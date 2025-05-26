@@ -1,0 +1,5 @@
+click
+datadog-api-client
+nautobot
+netmiko
+paramiko

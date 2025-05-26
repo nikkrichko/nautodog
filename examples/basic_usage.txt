@@ -1,0 +1,31 @@
+# Basic Usage Examples
+
+This document shows how to run the basic 'hello' command from the CLI application.
+
+## Prerequisites
+
+- Ensure you have Python installed.
+- Install the required dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+## Running the 'hello' command
+
+To greet someone, navigate to the `src` directory and run the `main.py` script with the 'hello' command followed by a name:
+
+```bash
+cd path/to/your/project/src  # Or ensure src is in your PYTHONPATH
+python main.py hello YourName
+```
+
+Expected output:
+```
+Hello, YourName!
+```
+
+You can also make the script executable and run it directly if you add a shebang line (e.g., `#!/usr/bin/env python`) to `src/main.py` and give it execute permissions (`chmod +x src/main.py`). Then you could run:
+
+```bash
+./src/main.py hello YourName
+```

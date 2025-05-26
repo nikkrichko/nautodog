@@ -1,0 +1,14 @@
+# Handle line endings automatically for files detected as text
+# and leave all files detected as binary untouched.
+* text=auto
+
+# Never convert line endings for shell scripts
+*.sh -text
+
+# Never convert line endings for Python scripts
+*.py -text
+
+# Use LF for specific file types
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
