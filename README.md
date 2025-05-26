@@ -1,36 +1,93 @@
 # Project Title
 
-This is a Python CLI application designed to [Your Project's Purpose - e.g., interact with network devices, manage cloud resources, etc.]. It utilizes libraries such as Click for the command-line interface, and various API clients and SSH libraries for its core functionality.
+This is a CLI Click application for integrating Nautobot data and executing API calls within Datadog.
 
-## Getting Started
+## Installation and Setup
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+To get this project up and running on your local machine, follow these steps. It's highly recommended to use a Python virtual environment to manage dependencies and avoid conflicts with other projects or your system's Python installation.
 
-### Prerequisites
+### 1. Create and Activate a Virtual Environment
 
-What things you need to install the software and how to install them.
+A virtual environment provides an isolated space for your Python packages.
 
+**On Unix-like systems (Linux/macOS - bash/zsh):**
+\`\`\`bash
+# Create the virtual environment
+python3 -m venv .venv
+
+# Activate the virtual environment
+source .venv/bin/activate
 \`\`\`
-Give examples
+After activation, your shell prompt will usually change to indicate that the virtual environment is active (e.g., `(.venv) your-prompt$`).
+
+**On Windows (PowerShell/CMD):**
+\`\`\`powershell
+# Create the virtual environment (CMD or PowerShell)
+python -m venv .venv
+
+# Activate the virtual environment (CMD)
+# .venv\Scripts\activate.bat
+
+# Activate the virtual environment (PowerShell)
+# .\.venv\Scripts\Activate.ps1
+\`\`\`
+If you encounter issues running `Activate.ps1` in PowerShell, you might need to adjust your execution policy. You can do this for the current process by running:
+`Set-ExecutionPolicy RemoteSigned -Scope Process`
+
+### 2. Install Dependencies
+
+Once your virtual environment is activated, install the required Python packages using pip and the `requirements.txt` file:
+\`\`\`bash
+pip install -r requirements.txt
 \`\`\`
 
-### Installing
+### Automated Setup Scripts
 
-A step-by-step series of examples that tell you how to get a development env running.
+To simplify the setup process, you can use the provided scripts which will create the virtual environment and install dependencies automatically.
 
-Say what the step will be
-
+**For Unix-like systems (bash/zsh):**
+Make the script executable (if you haven't already):
+\`\`\`bash
+chmod +x scripts/setup_venv.sh
 \`\`\`
-Give the example
+Then run the script:
+\`\`\`bash
+./scripts/setup_venv.sh
+\`\`\`
+Or directly using bash:
+\`\`\`bash
+bash scripts/setup_venv.sh
+\`\`\`
+Follow the on-screen prompts. To activate the environment after the script completes, run `source .venv/bin/activate`.
+
+**For Windows (PowerShell):**
+Ensure your PowerShell execution policy allows script execution. Then run:
+\`\`\`powershell
+.\scripts\setup_venv.ps1
+\`\`\`
+Follow the on-screen prompts. To activate the environment after the script completes, run `.\.venv\Scripts\Activate.ps1`.
+
+## Basic Usage
+
+Here's how to run the basic `hello` command provided by the CLI.
+
+**Example: Running the 'hello' command**
+
+Ensure your virtual environment is activated and you are in the project's root directory.
+\`\`\`bash
+python src/main.py hello YourName
 \`\`\`
 
-And repeat
-
+**Expected output:**
 \`\`\`
-until finished
+Hello, YourName!
 \`\`\`
 
-End with an example of getting some data out of the system or using it for a little demo.
+## Documentation
+
+For more detailed information about the project, including guides and API references, please see our main documentation page:
+
+[Project Documentation](docs/index.md)
 
 ## Running the tests
 

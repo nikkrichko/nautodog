@@ -1,0 +1,15 @@
+{
+  "nautobot": {
+    "url": "YOUR_NAUTOBOT_URL",
+    "token": "YOUR_NAUTOBOT_API_TOKEN"
+  },
+  "datadog": {
+    "api_key": "YOUR_DATADOG_API_KEY",
+    "app_key": "YOUR_DATADOG_APP_KEY",
+    "api_host": "https://api.datadoghq.com"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "app.log"
+  }
+}
