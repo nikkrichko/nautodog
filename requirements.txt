@@ -1,0 +1,13 @@
+netmiko>=4.5.0
+colorama>=0.4.6
+requests>=2.31.0
+requests-toolbelt>=1.0.0
+napalm>=4.1.0
+ipaddress>=1.0.23
+pynautobot>=2.6.1
+icmplib>=3.0.4
+xmltodict>=0.14.2
+dnspython>=2.7.0
+ruamel.yaml>=0.18.10
+click
+datadog-api-client
