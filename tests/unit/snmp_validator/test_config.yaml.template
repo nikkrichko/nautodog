@@ -1,0 +1,87 @@
+# Test Configuration for SnmpValidator
+#
+# Please copy this file to 'test_config.yaml' in the same directory
+# and fill in the necessary values to run the SNMP tests.
+#
+# Note: For SNMPv3, if you are not using auth or priv, leave the respective keys blank
+# or comment them out.
+#
+# It is recommended to use a dedicated test SNMP device or a device where
+# test SNMP queries will not cause issues.
+
+# Target device for SNMP tests. Replace with your test device's IP or hostname.
+# This host will be used for all tests unless overridden in a specific test section.
+global_test_host: "your_snmp_device_ip_or_hostname"
+global_test_port: 161 # Default SNMP port
+
+snmp_v2_tests:
+  # Test case for valid SNMPv2 credentials
+  valid_v2_creds:
+    host: "override_host_if_needed" # Optional: defaults to global_test_host
+    port: 161 # Optional: defaults to global_test_port
+    community_string: "public" # Replace with your SNMPv2 community string
+    # Example using a public test server:
+    # host: "demo.snmplabs.com"
+    # community_string: "public"
+
+  # Test case for invalid SNMPv2 credentials (e.g., wrong community string)
+  invalid_v2_creds:
+    host: "override_host_if_needed"
+    port: 161
+    community_string: "wrong_community"
+
+snmp_v3_tests:
+  # Test case for SNMPv3 noAuthNoPriv
+  # User only, no authentication or privacy
+  no_auth_no_priv:
+    host: "override_host_if_needed"
+    port: 161
+    user: "user_noauthnopriv" # Replace with your SNMPv3 username
+    auth_protocol: "usmNoAuthProtocol" # Must be usmNoAuthProtocol
+    priv_protocol: "usmNoPrivProtocol" # Must be usmNoPrivProtocol
+    auth_key: "" # Should be empty or absent
+    priv_key: "" # Should be empty or absent
+
+  # Test case for SNMPv3 authNoPriv
+  # User with authentication, but no privacy
+  auth_no_priv:
+    host: "override_host_if_needed"
+    port: 161
+    user: "user_authnopriv" # Replace with your SNMPv3 username
+    auth_protocol: "usmHMACMD5AuthProtocol" # e.g., usmHMACMD5AuthProtocol, usmHMACSHAAuthProtocol
+    priv_protocol: "usmNoPrivProtocol" # Must be usmNoPrivProtocol
+    auth_key: "your_auth_key" # Replace with your authentication key
+    priv_key: "" # Should be empty or absent
+
+  # Test case for SNMPv3 authPriv
+  # User with both authentication and privacy
+  auth_priv:
+    host: "override_host_if_needed"
+    port: 161
+    user: "user_authpriv" # Replace with your SNMPv3 username
+    auth_protocol: "usmHMACMD5AuthProtocol" # e.g., usmHMACMD5AuthProtocol, usmHMACSHAAuthProtocol
+    priv_protocol: "usmDESPrivProtocol" # e.g., usmDESPrivProtocol, usmAesCfb128Protocol
+    auth_key: "your_auth_key" # Replace with your authentication key
+    priv_key: "your_priv_key" # Replace with your privacy key
+
+  # Test case for SNMPv3 with an invalid authentication key
+  invalid_auth_key:
+    host: "override_host_if_needed"
+    port: 161
+    user: "user_authpriv" # Use a valid user configured for authPriv
+    auth_protocol: "usmHMACMD5AuthProtocol"
+    priv_protocol: "usmDESPrivProtocol"
+    auth_key: "wrong_auth_key" # Intentionally incorrect
+    priv_key: "your_priv_key" # Valid privacy key
+
+  # Test case for SNMPv3 with an invalid privacy key
+  invalid_priv_key:
+    host: "override_host_if_needed"
+    port: 161
+    user: "user_authpriv" # Use a valid user configured for authPriv
+    auth_protocol: "usmHMACMD5AuthProtocol"
+    priv_protocol: "usmDESPrivProtocol"
+    auth_key: "your_auth_key" # Valid auth key
+    priv_key: "wrong_priv_key" # Intentionally incorrect
+
+# You can add more test cases or variations as needed.

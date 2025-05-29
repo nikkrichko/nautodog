@@ -12,3 +12,4 @@ ruamel.yaml>=0.18.10
 click
 datadog-api-client
 pytest
+pysnmp>=4.4.12
