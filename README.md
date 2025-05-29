@@ -65,3 +65,9 @@ The application is organized into the following command groups:
 *   **`report`**: Commands for generating various reports.
 
 Detailed examples for each command can be found in `docs/examples.md`.
+
+## Testing
+
+This project includes a suite of unit and integration tests, particularly for the `RemoteHost` utility (`src/remote_host.py`). The `RemoteHost` utility provides a standardized way to interact with remote hosts over SSH, primarily for file transfer operations.
+
+For detailed information on how to run tests, configure the testing environment (including `tests/test_config.ini`), and use command-line options for integration tests, please see the [Testing Guide](tests/README.md).
