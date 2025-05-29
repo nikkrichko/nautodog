@@ -11,3 +11,4 @@ dnspython>=2.7.0
 ruamel.yaml>=0.18.10
 click
 datadog-api-client
+pytest
