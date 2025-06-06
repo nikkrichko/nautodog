@@ -12,3 +12,6 @@ ruamel.yaml>=0.18.10
 click
 datadog-api-client
 pytest
+loguru>=0.7.0
+opentelemetry-api
+opentelemetry-sdk
