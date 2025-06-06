@@ -1,8 +1,9 @@
 import click
-from loguru import logger
+# Removed: from loguru import logger
 import sys
 import functools # Import functools
 
+from src.helper.custom_logger import CustomLogger # Added
 # --- Command Group Imports ---
 from src.ddsnmpconfig.commands import ddsnmpconfig
 from src.ddmonitor.commands import ddmonitor
@@ -10,13 +11,11 @@ from src.ddmainconfig.commands import ddmainconfig
 from src.ddagent.commands import ddagent
 from src.report.commands import report
 
-# --- Loguru Configuration ---
-logger.remove()
-logger.add(
-    sys.stderr,
-    format="<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-    level="INFO"
-)
+# --- Custom Logger Initialization ---
+custom_logger = CustomLogger(config_path='config.yaml') # Added
+# Import logger instance after CustomLogger has configured it
+from loguru import logger # Added
+logger.info("Nautodog application started.") # Added
 
 # --- Logging Decorator ---
 def log_command(func):
