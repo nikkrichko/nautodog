@@ -1,73 +1,37 @@
-# Naurodog CLI Application
+# SNMPv3 Credential Checker
 
-Naurodog is a command-line interface (CLI) application built with Python and Click for managing various Datadog configurations and operations.
+This script, `snmp_check.py`, is a simple tool to check SNMPv3 credentials against a target host. It uses the `pysnmp` library to perform an asynchronous SNMP GET operation.
 
 ## Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
+To use this script, you need to have Python 3.7+ and the following libraries installed:
 
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
+* `pysnmp`: A pure-Python SNMP library.
+* `pycryptodomex`: A low-level cryptographic library required for SNMPv3 encryption.
 
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(Note: `requirements.txt` will be updated in a subsequent step to include `click`)*
+You can install these libraries using pip:
+
+```bash
+pip install pysnmp pycryptodomex
+```
 
 ## Usage
 
-The main entry point for the CLI is `src/naurodog.py`.
+To use the script, run it from the command line with the following arguments:
 
-### General Help
-
-To see the list of available command groups:
 ```bash
-python src/naurodog.py --help
+python snmp_check.py <host> <user> <auth_key> <priv_key>
 ```
 
-### Group Help
+* `<host>`: The IP address or hostname of the SNMP agent.
+* `<user>`: The SNMPv3 username.
+* `<auth_key>`: The SNMPv3 authentication key.
+* `<priv_key>`: The SNMPv3 privacy key.
 
-To see commands available within a specific group, use `--help` after the group name. For example, for the `ddsnmpconfig` group:
+### Example
+
 ```bash
-python src/naurodog.py ddsnmpconfig --help
+python snmp_check.py 192.168.1.1 myuser myauthkey myprivkey
 ```
 
-### Command Usage
-
-To run a specific command, follow this pattern:
-`python src/naurodog.py <group_name> <command_name> --name <your_name_here>`
-
-For example, to run the `addsnmpv3` command from the `ddsnmpconfig` group:
-```bash
-python src/naurodog.py ddsnmpconfig addsnmpv3 --name "my_device_01"
-```
-This will output:
-```
-Command: addsnmpv3, Name: my_device_01
-```
-
-## Command Structure
-
-The application is organized into the following command groups:
-
-*   **`ddsnmpconfig`**: Commands for SNMP configuration.
-*   **`ddmonitor`**: Commands for managing Datadog monitors.
-*   **`ddmainconfig`**: Commands for main Datadog configurations.
-*   **`ddagent`**: Commands related to the Datadog agent.
-*   **`report`**: Commands for generating various reports.
-
-Detailed examples for each command can be found in `docs/examples.md`.
-
-## Testing
-
-This project includes a suite of unit and integration tests, particularly for the `RemoteHost` utility (`src/remote_host.py`). The `RemoteHost` utility provides a standardized way to interact with remote hosts over SSH, primarily for file transfer operations.
-
-For detailed information on how to run tests, configure the testing environment (including `tests/test_config.ini`), and use command-line options for integration tests, please see the [Testing Guide](tests/README.md).
+If the credentials are correct, the script will print a success message and the result of the SNMP GET operation. Otherwise, it will print an error message.
